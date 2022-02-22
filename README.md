@@ -10,5 +10,6 @@ The method is designed to create a one-to-one relation between colours and sound
 
 <img src="img/003_idea_and_process.png" width="800" height="800">
 
-##### Inside the process 
+### Inside the process 
+##### Luminosity to Octave
 Starting by considering the extension of the two sensorial events, we can create a relation between them. If we calculate the intensity of the Input colour, than is possible to transpose this value inside the octave domain. For these steps, it will be needed to use the HSL colour representation, because it will make the process more easier and less expensive in terms of code.	
