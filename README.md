@@ -28,7 +28,7 @@ function colorSet(in_r, in_g, in_b) {
 	r = in_r / 255.0;
 	g = in_g / 255.0;
 	b = in_b / 255.0;
-  
+...
 }
 ```
 
@@ -66,5 +66,72 @@ o = Math.floor(o);
 
 ##### Hue to Central Frequency
 
-The RGB sequence can be seen like an actual ‘musical scale’ or rather, this RGB pattern can be linearly interpolate within one octave. In other terms, this  pattern is directly related to the consideration of Hue value, evaluated in 360 degrees. For doing this, it’s also needed to set a starting point for the relationship. I decided to set a stable relationship between the Red-Colour and C4 (261.6Hz). This relation it’s set-up with a rational thinking, not for a specific natural meaning. It’s used a note of the fourth octave because, in combination with the previous passage ‘luminosity to octave’, the final result it will be transposed to the corresponding octave of the colour intensity. 	
+<p  align="center">
+<img src="img/003_pseudo_[2].png" width="800">
+</p>
 
+The RGB sequence can be seen like an actual *musical scale* or rather, the pattern that is created can be linearly interpolate within one octave. In other terms, this sequence is directly related to the consideration of Hue value, evaluated in 360 degrees. For doing this, it is also needed to set a starting point for the relationship. I decided to set a stable relationship between the red-colour and C4 (at A4 440Hz, C4  261.6Hz). As mentioned before, the reason why it is used a note of the fourth octave is related to a series of balances between the two dimensions. 
+
+```JavaScript 
+// Hue Evaluation
+if(max == r) {
+	hue = 60 * ((g - b) / (max - min))
+} 
+if(max == g) {
+	hue = 60 * (2.0 + ((b - r) / (max - min)))
+} 
+if(max == b) {
+	hue = 60 * (4.0 + ((r - g) / (max - min)))
+}
+if(isNaN(hue) == 1) {
+	hue = 0;
+}
+if(hue < 0) {
+	hue = hue + 360;
+}
+if(max == min) {
+	hue = 0;
+}
+
+// Evaluation of the Central Frequency 
+
+central_frequency = (hue.toFixed(0) * (freq_red / 360)) + freq_red;
+```
+The `freq_red` constant is defined with:
+```JavaScript
+const a4 = 440; // (Hz)
+const freq_red = a4 * (Math.pow(2, (-9 / 12))); 
+```
+The formula used is explained [here](https://en.wikipedia.org/wiki/Musical_note).
+
+The final result is obtained by transposing the central frequency to the octave resulted from the luminosity:
+```JavaScript
+if (o < 4) {
+	output_frequency = central_frequency / Math.pow(2, (4 - o));
+}
+if(o >= 4 & o < 5) {
+	output_frequency = central_frequency;
+}
+if (o >= 5) {
+	output_frequency = central_frequency * Math.pow(2, o - 4);
+}
+```
+
+The math behind the steps that are used to evaluate the Luminosity and the Hue from the RGB value can be found [here](https://en.wikipedia.org/wiki/HSL_and_HSV).
+
+Note. The saturation can be implemented in the process and can be relate to the amplitude of a frequency as follow:
+```JavaScript
+// Saturation Evaluation
+if(l <= 0.5) {
+	s = (max - min) / (max + min);
+	} else {
+if(l > 0.5) {
+	s = (max - min) / (2.0 - (max - min));
+	}
+}
+if(isNaN(s) == 1) {
+	s = 0;
+}
+
+amplitude = saturation;
+```
