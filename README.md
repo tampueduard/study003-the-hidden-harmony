@@ -32,10 +32,15 @@ function colorSet(in_r, in_g, in_b) {
 }
 ```
 
-After having scaled the input values, two are the main blocks needed for the purpose of this conversion: (1) that evaluates the Octave from the Luminosity and (2) that sets a Central frequency from Hue.
+After having scaled the input values, two are the main blocks needed for the purpose of this conversion: (1) from the Luminosity evaluates the Octave and (2) from the Hue sets a Central Frequency.
 
 ##### Luminosity to Octave
-To find the Luminosity value from an RGB value, it is required to evaluate the maximum and minimum between the RGB: 
+
+<p  align="center">
+<img src="img/003_pseudo_[1].png" width="800">
+</p>
+
+Starting by considering the extension of the two sensorial events, we can create a relation between them. If we calculate the intensity of the input colour, than is possible to transpose this value inside the octave domain. To find the Luminosity value from an RGB value, it is required to evaluate the maximum and minimum between the RGB values: 
 ```JavaScript 
 max = Math.max(r,g,b);	
 min = Math.min(r,g,b);
@@ -43,10 +48,23 @@ min = Math.min(r,g,b);
 // Luminosity = (min + max) / 2 
   l = (min + max) / 2;
 ```
+Therefore, the obtained value is interpolated to the ten octaves in which the human hearing is enclosed. Note that, the luminosity value of 0.5 identify those colours named *Pure Saturated Colours*, or *Hues*. This is used to relize a fix point in the convertion, not only for this step, but also in the consideration of the relation between Hue and the 12 semitones that will be analized in the following:
+```JavaScript 
+if (l < 0.5) {
+	o = (4 / 0.5) * l;
+}
+if (l == 0.5) {
+	o = 4;
+}
+if (l > 0.5) {
+	o = ((5 / 0.5) * (l - 0.5) + 5);
+}
+	
+o = Math.floor(o); 
+```
 
-Starting by considering the extension of the two sensorial events, we can create a relation between them. If we calculate the intensity of the input colour, than is possible to transpose this value inside the octave domain. For these steps, it will be needed to use the HSL colour representation, because it will make the process more easier and less expensive in terms of code.	
 
+##### Hue to Central Frequency
 
-##### Luminosity to Octave
 The RGB sequence can be seen like an actual ‘musical scale’ or rather, this RGB pattern can be linearly interpolate within one octave. In other terms, this  pattern is directly related to the consideration of Hue value, evaluated in 360 degrees. For doing this, it’s also needed to set a starting point for the relationship. I decided to set a stable relationship between the Red-Colour and C4 (261.6Hz). This relation it’s set-up with a rational thinking, not for a specific natural meaning. It’s used a note of the fourth octave because, in combination with the previous passage ‘luminosity to octave’, the final result it will be transposed to the corresponding octave of the colour intensity. 	
 
