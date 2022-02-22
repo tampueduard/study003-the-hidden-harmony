@@ -8,4 +8,5 @@ Create a system of communication between the color and sound spaces that can be 
 ## THE METHOD
 The method is designed to create a one-to-one relation between colours and sound frequencies: luminance to octave and hue value to the 12 notes. It is useful to go through the HSL representation of the color before reaching the sound frequency domain. Note that the reverse is also possible.
 
-![](img/003_idea_and_process.png)
+
+<img src="img/003_idea_and_process.png" width="500" height="500">
