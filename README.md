@@ -1,12 +1,10 @@
-# Study003 - The Hidden Harmony
 ## Introduction
-*A digital synesthetic system* (2017 - 2021)
 
-In time the relation between colours and sound has been studied with more than one theory. From Greeks with Aristotle (On Colours), to Isaac Newton (Opticks) and many other artists like Kandinsky (On the Spiritual in Art) and Skrjabin (Prometheus: The Poem of Fire). The relation between colours and sounds I developed is not based on a scientific description of these two realms, but more on my personal view on how these interract. The series of studies under The Hidden Harmony tries to augment our perception. What if it would be possible to listen to a painting or see colours while listening to music?
+**WHAT IS *THE HIDDEN HARMONY?*** 
 
-**The idea**
+Essentialy, is *a digital synesthetic system*, a system of communication between the color and sound spaces that can be used to realize different installations and creative systems.
 
-Create a system of communication between the color and sound spaces that can be used to realize different installations and creative systems.
+In time the relation between colours and sound has been studied with more than one theory. From Greeks with **Aristotle** (*On Colours*), to **I. Newton** (*Opticks*) and many other artists like **W. Kandinsky** (*On the Spiritual in Art*) and **A. Skrjabin** (*Prometheus: The Poem of Fire*). The relation between colours and sounds I developed is not based on a scientific description of these two realms, but more on my personal view on how these interract. The series of studies under The Hidden Harmony tries to augment our perception. What if it would be possible to listen to a painting or see colours while listening to music?
 
 **The method** 
 
