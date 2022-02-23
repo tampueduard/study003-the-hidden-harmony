@@ -15,11 +15,13 @@ The method is designed to create a one-to-one relation between colours and sound
 </p>
 
 
+For instance, the method explained under shows how, from an initial colour it is possible to obtain a frequency, process applied to the [Study003A - Etherna](https://youtu.be/rYiHrotcdxU). Reversing the process, like is applied in the Study003B - Margò, can be realized a system that, express throught a colour a specific frequency.
+
 # Inside the process
 
 For the realization of this system is used as main software [Max/MSP](https://cycling74.com/products/max), inside of which a JavaScript code operates the conversion from colour to frequency. [Here](https://docs.cycling74.com/max8/vignettes/jsintro) can be found more about JavaScript operating inside Max/MSP.
 
-To begin with, the function needs as input from Max/MSP an RGB value, usually being between 0 and 255, it is better to scale those values between 0 and 1:
+To begin with, the function needs as input from Max/MSP an RGB value, depending on the value that is used, it might be needed to scale those values between 0 and 1 for a better approach to the conversion:
 ```JavaScript
 function colorSet(in_r, in_g, in_b) {
 	
@@ -32,24 +34,29 @@ function colorSet(in_r, in_g, in_b) {
 }
 ```
 
-After having scaled the input values, two are the main blocks needed for the purpose of this conversion: (1) from the [Luminosity evaluates the Octave](##-Luminosity-to-Octave) and (2) from the Hue sets a Central Frequency.
+After having scaled the input values, two are the main blocks needed for the purpose of this conversion: (1) from the [luminosity evaluates the octave](#Luminosity-to-Octave) and (2) from the [hue sets a central frequency](#Hue-to-Central-Frequency). 
+
+The [final result](#Final-Step) is obtained from the combination of these two blocks.
 
 ## Luminosity to Octave
 
-<p  align="center">
-<img src="img/003_pseudo_[1].png" width="800">
-</p>
-
 Starting by considering the extension of the two sensorial events, we can create a relation between them. If we calculate the intensity of the input colour, than is possible to transpose this value inside the octave domain. To find the Luminosity value from an RGB value, it is required to evaluate the maximum and minimum between the RGB values: 
 ```JavaScript 
+// maximum and minimum of the RGB colour space
+
 max = Math.max(r,g,b);	
 min = Math.min(r,g,b);
 
 // Luminosity = (min + max) / 2 
+
   l = (min + max) / 2;
 ```
-Therefore, the obtained value is interpolated to the ten octaves in which the human hearing is enclosed. Note that, the luminosity value of 0.5 identify those colours named *Pure Saturated Colours*, or *Hues*. This is used to relize a fix point in the convertion, not only for this step, but also in the consideration of the relation between Hue and the 12 semitones that will be analized in the following:
-```JavaScript 
+Therefore, the obtained value is interpolated to the ten octaves in which the human hearing is enclosed. 
+
+Note that, the luminosity value of 0.5 identify those colours named *Pure Saturated Colours*, or *Hues*. This is used to relize a fix point in the convertion, not only for this step, but also in the consideration of the relation between Hue and the 12 semitones that will be analized in the following:
+```JavaScript
+// Luminosity interpolation to Octaves 
+
 if (l < 0.5) {
 	o = (4 / 0.5) * l;
 }
@@ -62,18 +69,20 @@ if (l > 0.5) {
 	
 o = Math.floor(o); 
 ```
+Here is a graphical explanation of this block that can help understanding the transformation that occures:
+
+<p align="center">
+<img src="img/003_pseudo_[1].png" width="800">
+</p>
 
 
 ## Hue to Central Frequency
-
-<p  align="center">
-<img src="img/003_pseudo_[2].png" width="800">
-</p>
 
 The RGB sequence can be seen like an actual *musical scale* or rather, the pattern that is created can be linearly interpolate within one octave. In other terms, this sequence is directly related to the consideration of Hue value, evaluated in 360 degrees. For doing this, it is also needed to set a starting point for the relationship. I decided to set a stable relationship between the red-colour and C4 (at A4 440Hz, C4  261.6Hz). As mentioned before, the reason why it is used a note of the fourth octave is related to a series of balances between the two dimensions. 
 
 ```JavaScript 
 // Hue Evaluation
+
 if(max == r) {
 	hue = 60 * ((g - b) / (max - min))
 } 
@@ -102,10 +111,18 @@ The value for the constant `freq_red` is defined by:
 const a4 = 440; // (Hz)
 const freq_red = a4 * (Math.pow(2, (-9 / 12))); 
 ```
-The formula used is explained [here](https://en.wikipedia.org/wiki/Musical_note).
+Below, a graphical representation make easier to see the repetition that occures in the RGB colour space and the ralation to Hue and the 12 semitones:
+
+<p  align="center">
+<img src="img/003_pseudo_[2].png" width="800">
+</p>
+
+## Final Step
 
 The final result is obtained by transposing the central frequency to the octave resulted from the luminosity:
 ```JavaScript
+// Final result evaluation 
+
 if (o < 4) {
 	output_frequency = central_frequency / Math.pow(2, (4 - o));
 }
@@ -117,11 +134,10 @@ if (o >= 5) {
 }
 ```
 
-The math behind the steps that are used to evaluate the Luminosity and the Hue from the RGB value can be found [here](https://en.wikipedia.org/wiki/HSL_and_HSV).
-
-Note. The saturation can be implemented in the process and can be relate to the amplitude of a frequency as follow:
+Note. The saturation can be implemented in the process and can be linearly used as amplitude of a frequency as follow:
 ```JavaScript
 // Saturation Evaluation
+
 if(l <= 0.5) {
 	s = (max - min) / (max + min);
 	} else {
@@ -135,3 +151,8 @@ if(isNaN(s) == 1) {
 
 amplitude = saturation;
 ```
+### Links and Materials 
+
+The math behind the steps that are used to evaluate the Luminosity and the Hue from the RGB value can be found [here](https://en.wikipedia.org/wiki/HSL_and_HSV).
+
+The formula used to finde the note C4 from A4 is explained [here](https://en.wikipedia.org/wiki/Musical_note).
