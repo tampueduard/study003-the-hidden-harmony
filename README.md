@@ -1,8 +1,8 @@
-## Introduction
+# Introduction
 
-**WHAT IS *THE HIDDEN HARMONY?*** 
+**WHAT IS** *THE HIDDEN HARMONY?*
 
-Essentialy, is *a digital synesthetic system*, a system of communication between the color and sound spaces that can be used to realize different installations and creative systems.
+This study research the realization of *a digital synesthetic system*, a system of communication between the color and sound spaces that can be used to realize different installations and creative systems.
 
 In time the relation between colours and sound has been studied with more than one theory. From Greeks with **Aristotle** (*On Colours*), to **I. Newton** (*Opticks*) and many other artists like **W. Kandinsky** (*On the Spiritual in Art*) and **A. Skrjabin** (*Prometheus: The Poem of Fire*). The relation between colours and sounds I developed is not based on a scientific description of these two realms, but more on my personal view on how these interract. The series of studies under The Hidden Harmony tries to augment our perception. What if it would be possible to listen to a painting or see colours while listening to music?
 
@@ -15,9 +15,9 @@ The method is designed to create a one-to-one relation between colours and sound
 </p>
 
 
-## Inside the conversion
+# Inside the process
 
-For the realization of this system is used as main software [Max/MSP](https://cycling74.com/products/max), inside of which a JavaScript code operates the conversion from colour to frequency. 
+For the realization of this system is used as main software [Max/MSP](https://cycling74.com/products/max), inside of which a JavaScript code operates the conversion from colour to frequency. [Here](https://docs.cycling74.com/max8/vignettes/jsintro) can be found more about JavaScript operating inside Max/MSP.
 
 To begin with, the function needs as input from Max/MSP an RGB value, usually being between 0 and 255, it is better to scale those values between 0 and 1:
 ```JavaScript
@@ -32,9 +32,9 @@ function colorSet(in_r, in_g, in_b) {
 }
 ```
 
-After having scaled the input values, two are the main blocks needed for the purpose of this conversion: (1) from the Luminosity evaluates the Octave and (2) from the Hue sets a Central Frequency.
+After having scaled the input values, two are the main blocks needed for the purpose of this conversion: (1) from the [Luminosity evaluates the Octave](##-Luminosity-to-Octave) and (2) from the Hue sets a Central Frequency.
 
-##### Luminosity to Octave
+## Luminosity to Octave
 
 <p  align="center">
 <img src="img/003_pseudo_[1].png" width="800">
@@ -64,7 +64,7 @@ o = Math.floor(o);
 ```
 
 
-##### Hue to Central Frequency
+## Hue to Central Frequency
 
 <p  align="center">
 <img src="img/003_pseudo_[2].png" width="800">
@@ -97,7 +97,7 @@ if(max == min) {
 
 central_frequency = (hue.toFixed(0) * (freq_red / 360)) + freq_red;
 ```
-The `freq_red` constant is defined with:
+The value for the constant `freq_red` is defined by:
 ```JavaScript
 const a4 = 440; // (Hz)
 const freq_red = a4 * (Math.pow(2, (-9 / 12))); 
