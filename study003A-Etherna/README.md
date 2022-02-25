@@ -28,7 +28,7 @@ All the images are displayed inside the patch thanks to ```jit.pwindow```. To al
 <img src="img/003A_open_and_view.png" width="800">
 </p>
 
-## Manual selection of colours
+# Manual selection of colours
 
 The manual selection of colours directly on the painting works with five main steps: in order to interact with the painting is needed to  (1) [set-up a ```jit.pwindow```](#set-up-the-jitpwindow) that sends the mouse position. Then (2) a process [retrieves the colour information](#retriving-the-colours) specified by the mouse position on the image, and (3) a [gating system](#gating-system-and-convertion) stores the colour information and converts it to frequency. (4) A [visual feedback](#visual-feedback) gives a response to the user about the colour selected and the corresponding frequency. Finally (5) the [sound realization](#sound-realization) of the selected colours. 
 
@@ -128,13 +128,43 @@ In this case, for the entire project are used ```cycle ~``` modules, or sine wav
 
 Note. Some of the modules seen in the previous image are explained [here](#extras).
 
-The ```osc-bank``` sub-patch, receive the ```frequency-bank```obtained during the [gating and conversion]((#gating-system-and-convertion)) process and simply pass it through a sound module (```sound_fq```) and then apply an envelope (that can also be non-effective to the process).
+The ```osc-bank``` sub-patch, receive the ```frequency-bank```obtained during the [gating and conversion](#gating-system-and-convertion) process and simply pass it through a sound module (```sound_fq```) and then apply an envelope (that can also be non-effective to the process).
 
 The signals then are packed into a MC signal, that not only helps carrying the signals, but opens the patch to multichannel applications.
 
 <p  align="center">
 <img src="img/003A_mouse_selection_osc_bank.png" width="800">
 </p>
+
+# Resampling of the painting
+
+The second method that can be used inside this project is realized to create a more complete sound representation of the image. With that said, this process consist in the collection of maximum 100 values that can be used in the sound representation. The method is constructed upon three major processes: (1) the [resampling of the original image](#resampling-of-the-image), (2) the [elaboration of the deriving data](#elaboration-of-the-deriving-data) and (3) the [conversion to sound](#convesion-to-sound).
+
+Below, samples of the patch in presentation mode, showing two examples of resampling.
+
+<p  align="center">
+<img src="img/003A_resampling_pr_mode.png" width="800">
+</p>
+
+### Resampling of the image
+
+As it can be deduced this first step operates the resampling of the painting. This is done by down-sampling the initial matrix, provided by the imported image. 
+
+This step also creates the two sections that will be converted to frequency later on. This last one, is made using the ```jit.submatrix``` object, receiving the offset position (in this case only for the x dimension) by the user interaction. 
+
+The user also has to decide the down-sampling values that do not have to exceed the value of 50 for the x dimension, because of the maximum number per section. The y dimension instead do not suffer of constrictions, but depends on the narration that the user wants to achieve.
+
+<p  align="center">
+<img src="img/003A_resampling_scaling.png" width="800">
+</p>
+
+
+### Elaboration of the deriving data
+
+
+
+
+### Convesion to sound 
 
 
 ### Extras 
