@@ -10,7 +10,7 @@ The study can be seen as (1) a stand-alone audiovisual work or (2) as a sound in
 
 The project runs inside Max/MSP, using different modules, such as: Jitter operators, MC signal operators, JS objects. The use of the patch for the moment is to create an environment in which is possible to experiment with this system, for further possible realizations outside the Max/MSP environment. 
 
-The system develops two possible applications: (1) a [manual selection of colours]() directly from the painting, and (2) based on a [resampling of the painting]() and choice of two regions.
+The system develops two possible applications: (1) a [manual selection of colours](#manual-selection-of-colours) directly from the painting, and (2) based on a [resampling of the painting]() and choice of two regions.
 
 Below, the patch in presentation mode.
 
