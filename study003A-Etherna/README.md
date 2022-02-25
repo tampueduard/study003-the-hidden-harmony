@@ -30,7 +30,7 @@ All the images are displayed inside the patch thanks to ```jit.pwindow```. To al
 
 # Manual selection of colours
 
-The manual selection of colours directly on the painting works with five main steps: in order to interact with the painting is needed to  (1) [set-up a ```jit.pwindow```](#set-up-the-jitpwindow) that sends the mouse position. Then (2) a process [retrieves the colour information](#retriving-the-colours) specified by the mouse position on the image, and (3) a [gating system](#gating-system-and-convertion) stores the colour information and converts it to frequency. (4) A [visual feedback](#visual-feedback) gives a response to the user about the colour selected and the corresponding frequency. Finally (5) the [sound realization](#sound-realization) of the selected colours. 
+The manual selection of colours directly on the painting works with five main steps: in order to interact with the painting is needed to  (1) [set-up a ```jit.pwindow```](#set-up-the-jitpwindow) that sends the mouse position. Then (2) a process [retrieve the colour information](#retrieving-the-colours) specified by the mouse position on the image, and (3) a [gating system](#gating-system-and-convertion) stores the colour information and converts it to frequency. (4) A [visual feedback](#visual-feedback) gives a response to the user about the colour selected and the corresponding frequency. Finally (5) the [sound realization](#sound-realization) of the selected colours. 
 
 <p  align="center">
 <img src="img/003A_mouse_selection_pr_mode.png" width="800">
@@ -44,7 +44,7 @@ To begin with, the ```jit.pwindow``` receives the matrix information related to 
 <img src="img/003A_mouse_selection_set-up_jit.png" width="800">
 </p>
 
-### Retriving the colours 
+### Retrieving the colours 
 
 This process is encapsulated inside the sub-patch ```mouse_selection```, in which is received the matrix information relative to the imported image and outputted as it is to the jit.pwindow. The sub-patch also operate to obtain the information relative to the three RGB colour planes by splitting the matrix. 
 
@@ -161,10 +161,72 @@ The user also has to decide the down-sampling values that do not have to exceed 
 
 ### Elaboration of the deriving data
 
+To successfully convert the two obtained down-sampled matrices, they are passed into the ```to_frequency``` sub-patch (that contains this and the next step). 
 
+Inside this sub-patch as previously described for the [manual selection of colours](#retrieving-the-colours), the two matrices are splitted, but in this case after having retrieved each plane (red, green, blue), they are passed into a sub-patch that combines, for each index, the three values. This is done to be able to have in return 50 RGB single values that later on will be used for the conversion to sound. Note. Other methods can be used to obtain the same result. 
 
+<p  align="center">
+<img src="img/003A_resampling_elaboration.png" width="800">
+</p>
 
-### Convesion to sound 
+### Conversion to sound 
 
+As can be seen already in the previous image, the final step is to convert the obtained RGB values to a sound. Unlike for the other method, in this case the process of conversion to frequency and then to sound is done inside one single passage (before the frequencies were computed also for the realization of the visual feedback). 
+
+The 50 obtained values are then passed in to the ```conversion_block``` sub-patch in which each value is passed through a ```sound_box``` sub-patch that contains (1) the js code responsible for the conversion and (2) a ```cycle ~``` that returns the sound signal. Each single signal is then passed outside of the ```conversion_block``` sub-patch and packed into a MC signal of 50 channels.
+
+<p  align="center">
+<img src="img/003A_resampling_conversion.png" width="800">
+</p>
+
+Is important to underline two things. (1) The process is specular for both the matrices obtained. Here is explained the process regarding just one of them, but the same is applied to the other. (2) In the case that the down-sampling do not cover all the 50 possible values, lets suppose that we are resampling the x dimension to a value of 10, tha matrix will return multiple values of the same colour. In our case for example we will have 5 groups of 5 rows that will report the same values (```50 / x_dimension```).
+
+The sound obtained is then passed through a control system, one for each selection.
+
+<p  align="center">
+<img src="img/003A_resampling_mixer.png" width="800">
+</p>
 
 ### Extras 
+
+There are some extra elements that are used inside this project that mainly regards the control of the sound after the ultimate step of the conversion. In fact, there are two processes that helps in the diversification of the sound resulted from this process. (1) A randomized volume setter and (2) the application of effects at the end of the chain.
+
+#### Randomized Volume Setter
+
+As the name implies, this process apply different randomized values to the channels. Due to the nature of the MC signal process, that redirects the odd numbers to the left channel and the even number to the right, the randomization of the volumes create a more wide and less heavy sound. To this is implements also a ```line``` object that smooths the changes between the values. 
+
+The values are generated thanks to a js code (inside the ```volume_randomizer``` sub-patch), that returns 50 values evaluated in decibel: 
+
+```JavaScript
+
+function randomic() {
+    var arr = [];
+
+    while(arr.length < 50){
+        var r = Math.floor(Math.random() * 100) + 0.01;
+        var n = (r/100.);
+        var db = 20 * log10(n);
+    if(arr.indexOf(db) === -1) arr.push(db);
+    }
+outlet(0, arr);
+}
+
+function log10(f) {
+    return Math.log(f)/Math.log(10.);
+}
+
+```
+
+
+The value are passed then to the ```line``` sub-patch that interpolates the values.
+
+Note. It is presented for the 50 values but the process is applied to the 8 values of the [manual selection of colours](#retrieving-the-colours).
+
+<p  align="center">
+<img src="img/volume_randomizer.png" width="800">
+</p>
+
+
+#### Effects
+
+
