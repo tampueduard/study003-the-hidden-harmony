@@ -62,7 +62,7 @@ The next two steps, [gating system](#gating-system-and-convertion) and [visual f
 <img src="img/003A_mouse_selection_convertion_and_visual_feedback.png" width="800">
 </p>
 
-### Gaiting system and convertion
+### Gating system and conversion
 
 This process is realized to make possible to the system to store momentarily the colour information received by the previous step. To work the system requires the interaction of the user, that has to specify, before positioning the mouse to the colour that is wanted to store, the voice that has to store that value, by pressing the relative number on the keyboard. 
 
@@ -128,7 +128,7 @@ In this case, for the entire project are used ```cycle ~``` modules, or sine wav
 
 Note. Some of the modules seen in the previous image are explained [here](#extras).
 
-The ```osc-bank``` sub-patch, receive the ```frequency-bank```obtained during the [gating and conversion]() process and simply pass it through a sound module (```sound_fq```) and then apply an envelope (that can also be non-effective to the process).
+The ```osc-bank``` sub-patch, receive the ```frequency-bank```obtained during the [gating and conversion]((#gating-system-and-convertion)) process and simply pass it through a sound module (```sound_fq```) and then apply an envelope (that can also be non-effective to the process).
 
 The signals then are packed into a MC signal, that not only helps carrying the signals, but opens the patch to multichannel applications.
 
