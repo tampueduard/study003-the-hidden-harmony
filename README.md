@@ -15,7 +15,7 @@ The method is designed to create a one-to-one relation between colours and sound
 </p>
 
 
-For instance, the method explained under shows how, from an initial colour it is possible to obtain a frequency, process applied to the [Study003A - Etherna](https://youtu.be/rYiHrotcdxU). Reversing the process, like is applied in the Study003B - Margò, can be realized a system that, express throught a colour a specific frequency.
+For instance, the method explained under shows how, from an initial colour it is possible to obtain a frequency, process applied to the [Study003A - Etherna](https://youtu.be/rYiHrotcdxU). Reversing the process, with the Study003B that is currently under development, can be realized a system that, express throught a colour a specific frequency.
 
 # Inside the process
 
@@ -156,3 +156,8 @@ amplitude = saturation;
 The math behind the steps that are used to evaluate the Luminosity and the Hue from the RGB value can be found [here](https://en.wikipedia.org/wiki/HSL_and_HSV).
 
 The formula used to finde the note C4 from A4 is explained [here](https://en.wikipedia.org/wiki/Musical_note).
+
+### License 
+
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
