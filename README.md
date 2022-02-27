@@ -1,21 +1,23 @@
+<c>
+THE HIDDEN HARMONY 
+</c> 
+
 # Introduction
 
-**WHAT IS** *THE HIDDEN HARMONY?*
+This study research the realization of *a digital synesthetic system*, a system of communication between the colour and sound spaces that can be used to realize different installations and creative systems.
 
-This study research the realization of *a digital synesthetic system*, a system of communication between the color and sound spaces that can be used to realize different installations and creative systems.
-
-In time the relation between colours and sound has been studied with more than one theory. From Greeks with **Aristotle** (*On Colours*), to **I. Newton** (*Opticks*) and many other artists like **W. Kandinsky** (*On the Spiritual in Art*) and **A. Skrjabin** (*Prometheus: The Poem of Fire*). The relation between colours and sounds I developed is not based on a scientific description of these two realms, but more on my personal view on how these interract. The series of studies under The Hidden Harmony tries to augment our perception. What if it would be possible to listen to a painting or see colours while listening to music?
+In time the relation between colours and sound has been studied with more than one theory. From Greeks with **Aristotle** (*On Colours*), to **I. Newton** (*Opticks*) and many other artists like **W. Kandinsky** (*On the Spiritual in Art*) and **A. Skrjabin** (*Prometheus: The Poem of Fire*). The relation between colours and sounds I developed is not based on a scientific description of these two realms, but more on my personal view on how these interact. The series of studies under The Hidden Harmony tries to augment our perception. What if it would be possible to listen to a painting or see colours while listening to music?
 
 **The method** 
 
-The method is designed to create a one-to-one relation between colours and sound frequencies: luminance to octave and hue value to the 12 notes. It is useful to go through the HSL representation of the color before reaching the sound frequency domain. Note that the reverse is also possible.
+The method is designed to create a one-to-one relation between colours and sound frequencies: luminance to octave and hue value to the 12 notes. It is useful to go through the HSL representation of the colour before reaching the sound frequency domain. Note that the reverse is also possible.
 
 <p  align="center">
 <img src="img/003_idea_and_process.png" width="800">
 </p>
 
 
-For instance, the method explained under shows how, from an initial colour it is possible to obtain a frequency, process applied to the [Study003A - Etherna](https://youtu.be/rYiHrotcdxU). Reversing the process, with the Study003B that is currently under development, can be realized a system that, express throught a colour a specific frequency.
+For instance, the method explained under shows how, from an initial colour it is possible to obtain a frequency, process applied to the [Study003A - Etherna](https://youtu.be/rYiHrotcdxU). Reversing the process, with the Study003B that is currently under development, can be realized a system that, express through a colour a specific frequency.
 
 # Inside the process
 
@@ -53,7 +55,7 @@ min = Math.min(r,g,b);
 ```
 Therefore, the obtained value is interpolated to the ten octaves in which the human hearing is enclosed. 
 
-Note that, the luminosity value of 0.5 identify those colours named *Pure Saturated Colours*, or *Hues*. This is used to relize a fix point in the convertion, not only for this step, but also in the consideration of the relation between Hue and the 12 semitones that will be analized in the following:
+Note that, the luminosity value of 0.5 identify those colours named *Pure Saturated Colours*, or *Hues*. This is used to realize a fix point in the conversion, not only for this step, but also in the consideration of the relation between Hue and the 12 semitones that will be analysed in the following:
 ```JavaScript
 // Luminosity interpolation to Octaves 
 
@@ -69,7 +71,7 @@ if (l > 0.5) {
 	
 o = Math.floor(o); 
 ```
-Here is a graphical explanation of this block that can help understanding the transformation that occures:
+Here is a graphical explanation of this block that can help understanding the transformation that occurs:
 
 <p align="center">
 <img src="img/003_pseudo_[1].png" width="800">
@@ -111,7 +113,7 @@ The value for the constant `freq_red` is defined by:
 const a4 = 440; // (Hz)
 const freq_red = a4 * (Math.pow(2, (-9 / 12))); 
 ```
-Below, a graphical representation make easier to see the repetition that occures in the RGB colour space and the ralation to Hue and the 12 semitones:
+Below, a graphical representation make easier to see the repetition that occurs in the RGB colour space and the relation to Hue and the 12 semitones:
 
 <p  align="center">
 <img src="img/003_pseudo_[2].png" width="800">
@@ -155,7 +157,7 @@ amplitude = saturation;
 
 The math behind the steps that are used to evaluate the Luminosity and the Hue from the RGB value can be found [here](https://en.wikipedia.org/wiki/HSL_and_HSV).
 
-The formula used to finde the note C4 from A4 is explained [here](https://en.wikipedia.org/wiki/Musical_note).
+The formula used to find the note C4 from A4 is explained [here](https://en.wikipedia.org/wiki/Musical_note).
 
 ### License 
 
