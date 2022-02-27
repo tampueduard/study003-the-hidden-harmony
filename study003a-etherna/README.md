@@ -72,7 +72,7 @@ This process is realized to make possible to the system to store momentarily the
 
 Then, two are the developments: (1) to the colour value is prepended the line ‘brgb’ required for the visual feedback step and (2) ```join``` the values to operate the conversion, inside the ```conversion-block```.
 
-Inside the ```conversion-block```, the information are then passed to the ```conversion_module``` that uses a ```js module``` with the code explained [here](../README.md), to pass from the RGB space to the sound frequency domain. 
+Inside the ```conversion-block```, the information are then passed to the ```conversion_module``` that uses a ```js module``` with the code explained [here](../colour_to_frequency/README.md), to pass from the RGB space to the sound frequency domain. 
 
 <p  align="center">
 <img src="img/003A_mouse_selection_gaiting_system.png" width="800">
