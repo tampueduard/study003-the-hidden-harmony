@@ -1,14 +1,18 @@
+<c> 
+ETHERNA 
+</c> 
+
 # Introduction
 
 The series of *studies* starts with the correlation between colours and sounds. The name of this study, *Etherna*, anticipates what is its purpose: the realization of an eternal 'soundtrack', that could be a complement for the fruition of a particular figurative work. 
 
 The study can be seen as (1) a stand-alone audiovisual work or (2) as a sound installation inside a museum, a static or interactive realization. 
 
-<h3  align="center"> "Art is a sort of an experimental station<p> in which one tries out living."  <p> - John Cage - </h3>
+<h3 align="center" > "Art is a sort of an experimental station<p> in which one tries out living."  <p> - John Cage - </h3>
 
 ### Tools and ideas
 
-The project runs inside Max/MSP, using different modules, such as: Jitter operators, MC signal operators, JS objects. The use of the patch for the moment is to create an environment in which is possible to experiment with this system, for further possible realizations outside the Max/MSP environment. 
+The project runs inside Max/MSP, using different modules, such as: ```Jitter``` operators, ```MC``` signal operators, ```JS``` objects. The use of the patch for the moment is to create an environment in which is possible to experiment with this system, for further possible realizations outside the Max/MSP environment. 
 
 The system develops two possible applications: (1) a [manual selection of colours](#manual-selection-of-colours) directly from the painting, and (2) based on a [resampling of the painting]() and choice of two regions.
 
@@ -124,7 +128,7 @@ The final step is generating sound from the obtained frequencies.
 <img src="img/003A_mouse_selection_sound_realisation.png" width="800">
 </p>
 
-In this case, for the entire project are used ```cycle ~``` modules, or sine waves. This do not imply that other sound forms can be used, and this also extends to the uso of external softwares. Other applications of this patch see for example the use of midi messages to communicate with Ableton Live, opening the process to broad sound possibilities.
+In this case, for the entire project are used ```cycle ~``` modules, or sine waves. This do not imply that other sound forms can be used, and this also extends to the use of external software. Other applications of this patch see for example the use of midi messages to communicate with Ableton Live, opening the process to broad sound possibilities.
 
 Note. Some of the modules seen in the previous image are explained [here](#extras).
 
@@ -179,7 +183,7 @@ The 50 obtained values are then passed in to the ```conversion_block``` sub-patc
 <img src="img/003A_resampling_conversion.png" width="800">
 </p>
 
-Is important to underline two things. (1) The process is specular for both the matrices obtained. Here is explained the process regarding just one of them, but the same is applied to the other. (2) In the case that the down-sampling do not cover all the 50 possible values, lets suppose that we are resampling the x dimension to a value of 10, tha matrix will return multiple values of the same colour. In our case for example we will have 5 groups of 5 rows that will report the same values (```50 / x_dimension```).
+Is important to underline two things. (1) The process is specular for both the matrices obtained. Here is explained the process regarding just one of them, but the same is applied to the other. (2) In the case that the down-sampling do not cover all the 50 possible values the matrix will return multiple values of the same colour. Let's suppose that the x dimension of resampling is 10, il will have 5 groups of 5 rows that will report the same values (```50 / x_dimension```).
 
 The sound obtained is then passed through a control system, one for each selection.
 
@@ -225,8 +229,4 @@ Note. It is presented for the 50 values but the process is applied to the 8 valu
 <p  align="center">
 <img src="img/volume_randomizer.png" width="800">
 </p>
-
-
-#### Effects
-
 
