@@ -20,14 +20,14 @@ In time the relation between colours and sound has been studied with more than o
 
 ## The method
 
-The method is designed to create a one-to-one relation between colours and sound frequencies: luminance to octave and hue value to the 12 notes. It is useful to go through the HSL representation of the colour before reaching the sound frequency domain. Note that the reverse is also possible.
+The method is designed to create a one-to-one relation between colours and sound frequencies: luminance to octave and hue value to the 12 notes. It is useful to go through the HSL representation of the colour before reaching the sound frequency domain. Note that the reverse is also possible. [Here](/colour_to_frequency/README.md) you can find an explanation of the algorithm that converts a colour to a frequency.
 
 <p  align="center">
 <img src="img/003_idea_and_process.png" width="800">
 </p>
 
 
-For instance, the method explained under shows how, from an initial colour it is possible to obtain a frequency, process applied to the [Study003A - Etherna](https://youtu.be/rYiHrotcdxU). Reversing the process, with the Study003B that is currently under development, can be realized a system that, express through a colour a specific frequency.
+For instance, the [Study003A - Etherna](/study003a-etherna/README.md) shows how, from an initial colour it is possible to obtain a frequency (You can find some examples [here](https://youtu.be/rYiHrotcdxU)). Reversing the process, with the Study003B that is currently under development, can be realized a system that, express through a colour a specific frequency.
 
 Below, some renderings showing an imaginary result:
 
