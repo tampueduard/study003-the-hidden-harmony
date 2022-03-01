@@ -34,7 +34,7 @@ All the images are displayed inside the patch thanks to ```jit.pwindow```. To al
 
 # Manual selection of colours
 
-The manual selection of colours directly on the painting works with five main steps: in order to interact with the painting is needed to  (1) [set-up a ```jit.pwindow```](#set-up-the-jitpwindow) that sends the mouse position. Then (2) a process [retrieve the colour information](#retrieving-the-colours) specified by the mouse position on the image, and (3) a [gating system](#gating-system-and-convertion) stores the colour information and converts it to frequency. (4) A [visual feedback](#visual-feedback) gives a response to the user about the colour selected and the corresponding frequency. Finally (5) the [sound realization](#sound-realization) of the selected colours. 
+The manual selection of colours directly on the painting works with five main steps: in order to interact with the painting is needed to  (1) [set-up a ```jit.pwindow```](#set-up-the-jitpwindow) that sends the mouse position. Then (2) a process [retrieve the colour information](#retrieving-the-colours) specified by the mouse position on the image, and (3) a [gating system](#gating-system-and-conversion) stores the colour information and converts it to frequency. (4) A [visual feedback](#visual-feedback) gives a response to the user about the colour selected and the corresponding frequency. Finally (5) the [sound realization](#sound-realization) of the selected colours. 
 
 <p  align="center">
 <img src="img/003A_mouse_selection_pr_mode.png" width="800">
@@ -60,7 +60,7 @@ The three splitted matrices receive, thanks to the ```set $1 $2```, the informat
 
 <h3> Note </h3>
 
-The next two steps, [gating system](#gating-system-and-convertion) and [visual feedback](#visual-feedback), are encapsulated respectively inside the ```mouse_selection_boxes``` and ```cube_on_canvas``` subpatches.
+The next two steps, [gating system](#gating-system-and-conversion) and [visual feedback](#visual-feedback), are encapsulated respectively inside the ```mouse_selection_boxes``` and ```cube_on_canvas``` subpatches.
 
 <p  align="center">
 <img src="img/003A_mouse_selection_convertion_and_visual_feedback.png" width="800">
@@ -132,7 +132,7 @@ In this case, for the entire project are used ```cycle ~``` modules, or sine wav
 
 Note. Some of the modules seen in the previous image are explained [here](#extras).
 
-The ```osc-bank``` sub-patch, receive the ```frequency-bank```obtained during the [gating and conversion](#gating-system-and-convertion) process and simply pass it through a sound module (```sound_fq```) and then apply an envelope (that can also be non-effective to the process).
+The ```osc-bank``` sub-patch, receive the ```frequency-bank```obtained during the [gating and conversion](#gating-system-and-conversion) process and simply pass it through a sound module (```sound_fq```) and then apply an envelope (that can also be non-effective to the process).
 
 The signals then are packed into a MC signal, that not only helps carrying the signals, but opens the patch to multichannel applications.
 
