@@ -18,6 +18,10 @@ The system develops two possible applications: (1) a [manual selection of colour
 
 Below, the patch in presentation mode.
 
+**Painting credit**
+
+© Melissa McCracken, *Boy with a coin - Iron & Wine* (2016) 
+
 <p  align="center">
 <img src="img/003A_full_patch_pr_mode.png" width="800">
 </p>
